@@ -4,19 +4,19 @@ namespace MauiAppAuth0;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-    private readonly Auth0Client auth0Client;
+    private readonly Auth0Client _auth0Client;
+    private HttpClient _httpClient;
 
-    public MainPage(Auth0Client client)
+    public MainPage(Auth0Client client, HttpClient httpClient)
     {
         InitializeComponent();
-        auth0Client = client;
+        _auth0Client = client;
+        _httpClient = httpClient;
     }
-
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        var loginResult = await auth0Client.LoginAsync();
+        var loginResult = await _auth0Client.LoginAsync(new { audience = "https://todowebapi" });
 
         if (!loginResult.IsError)
         {
@@ -26,6 +26,8 @@ public partial class MainPage : ContentPage
 
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
+
+            TokenHolder.AccessToken = loginResult.AccessToken;
         }
         else
         {
@@ -35,9 +37,25 @@ public partial class MainPage : ContentPage
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        var logoutResult = await auth0Client.LogoutAsync();
+        var logoutResult = await _auth0Client.LogoutAsync();
 
         HomeView.IsVisible = false;
         LoginView.IsVisible = true;
+    }
+
+    private async void OnApiCallClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync("messages/protected");
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                await DisplayAlert("Info", content, "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 }

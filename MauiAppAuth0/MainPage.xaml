@@ -12,36 +12,39 @@
                     x:Name="LoginBtn"
                     Clicked="OnLoginClicked"
                     HorizontalOptions="Center"
-                    SemanticProperties.Hint="Click to log in"
                     Text="Log In" />
             </StackLayout>
 
-            <StackLayout x:Name="HomeView" IsVisible="false">
+            <StackLayout
+                x:Name="HomeView"
+                IsVisible="false"
+                Spacing="10">
                 <Image
                     Aspect="AspectFit"
                     HeightRequest="185"
-                    SemanticProperties.Description="dot net bot in a race car number eight"
                     Source="dotnet_bot.png" />
 
                 <Image
                     x:Name="UserPictureImg"
                     HeightRequest="200"
-                    HorizontalOptions="Center"
-                    SemanticProperties.Description="User's picture" />
+                    HorizontalOptions="Center" />
 
                 <Label
                     x:Name="UsernameLbl"
                     FontSize="18"
                     HorizontalOptions="Center"
-                    SemanticProperties.Description="User's name"
-                    SemanticProperties.HeadingLevel="Level2"
                     Text="" />
+
+                <Button
+                    x:Name="CallAPIBtn"
+                    Clicked="OnApiCallClicked"
+                    HorizontalOptions="Center"
+                    Text="Call API" />
 
                 <Button
                     x:Name="LogoutBtn"
                     Clicked="OnLogoutClicked"
                     HorizontalOptions="Center"
-                    SemanticProperties.Hint="Click to log out"
                     Text="Log Out" />
             </StackLayout>
         </VerticalStackLayout>
