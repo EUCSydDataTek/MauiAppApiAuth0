@@ -26,8 +26,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton(new Auth0Client(new()
         {
-            Domain = "eucsyd.eu.auth0.com",
-            ClientId = "UEsF5peOE4UX6ItrIx4b6MZxBc7GVS20",
+            Domain = "<YOUR DOMAIN IN AUTH0>",
+            ClientId = "<YOUR CLIENTID FOR CLIENT APPLICATION>",
             RedirectUri = "myapp://callback/",
             PostLogoutRedirectUri = "myapp://callback/",
             Scope = "openid profile email"
