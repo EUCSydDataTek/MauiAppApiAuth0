@@ -9,6 +9,7 @@ Auth0-MAUI eksempel i GitHub: https://github.com/frederikprijck/auth0-maui (Beny
 Se også: [Add Login to Your MAUI Application](https://auth0.com/docs/quickstart/native/maui/interactive)
 
 # Windows
+Bemærk at man manuelt skal lukke fanen når login er foretaget. Det er ikke muligt at lukke den via koden.
 Her skal ændres 2 ting i .csproj filen:
 
 1. Ændre Windows-version til 10.0.20348.0:
@@ -21,3 +22,6 @@ Her skal ændres 2 ting i .csproj filen:
 <WindowsPackageType>MSIX</WindowsPackageType>
 ```
 [Convert an unpackaged .NET MAUI Windows app to packaged](https://learn.microsoft.com/en-us/dotnet/maui/windows/setup)
+
+# Android
+Testet på Android API 35 device. (Emulator virker måske på API 34).
