@@ -16,7 +16,7 @@ public partial class MainPage : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        var loginResult = await auth0Client.LoginAsync();
+        IdentityModel.OidcClient.LoginResult loginResult = await auth0Client.LoginAsync();
 
         if (!loginResult.IsError)
         {
@@ -35,7 +35,7 @@ public partial class MainPage : ContentPage
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        var logoutResult = await auth0Client.LogoutAsync();
+        IdentityModel.OidcClient.Browser.BrowserResultType logoutResult = await auth0Client.LogoutAsync();
 
         HomeView.IsVisible = false;
         LoginView.IsVisible = true;
